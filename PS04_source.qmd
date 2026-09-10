@@ -321,10 +321,11 @@ Make a numerical prediction for the level of trump support for a region that has
 ::: {.callout-important icon="false" collapse="false" title="Problem 8 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
+predict(nw_mod, newdata= data.frame(non_white = 70))
 
 ```
 
--   Delete this and put your text answer here.
+-   We would expect 39.48989% trump support for a region that has 70% of humans that identify as a person of color.
 :::
 
 ::: {.callout-note icon="false" title="Problem 9"}
@@ -335,9 +336,11 @@ Based on the evidence you have so far (scatterplots and correlation coefficients
 ```{r}
 # Type your code and comments inside the code chunk
 
+trump |>
+  summarize(cor_poverty = cor(trump_support, poverty), cor_non_white = cor(trump_support, non_white))
 ```
 
--   Delete this and put your text answer here.
+-   Poverty and non-whiteness seem to be similarly good explanatory variables of trump support with poverty being a slightly better explanatory variable. This is because the higher the absolute value of the correlation cofficient, the more clear a correlation is. Because the absolute value of cor_povert is slightly higher than that or cor_non_white, it is a slightly better explanatory variable.
 :::
 
 ::: {.callout-note icon="false" title="Problem 10"}
@@ -353,19 +356,28 @@ If Representative Ocasio-Cortez saw the regression line (`nw_mod`) and not the a
 ::: {.callout-important icon="false" collapse="false" title="Problem 10 Answers"}
 ```{r}
 # Type your code and comments inside the code chunk
+ggplot(data = trump, aes(x = non_white, y = trump_support)) +
+  geom_point(alpha = 0) +
+  geom_smooth(method = "lm", se = FALSE)
+
+predict(nw_mod, newdata = data.frame(non_white = 61))
+
 
 ```
 
-**A.** Delete this and put your text answer here.
+**A.** Her prediction for trump support in a region with 61% of people who are non-white would be 41.91197%
 
 ```{r}
 # Type your code and comments inside the code chunk
-
+non_white_61 <- get_regression_points(nw_mod) |>
+  filter(non_white == 61) |>
+  select(non_white, trump_support_hat, residual)
+kable(non_white_61)
 ```
 
-**B.** Delete this and put your text answer here.
+**B.** Her prediction of Trump support would be an over estimate because the residual at that point is -8.912, which indicates that the real data is more negative, or less than the linear regression line.
 
-**C.** Delete this and put your text answer here.
+**C.** The residual for the prediction at 61% non-white people is -8.912.
 :::
 
 # Turning in Your Work
