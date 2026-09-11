@@ -39,7 +39,7 @@ library(moderndive)
 ## The Data
 
 The following uses the function `read_csv()` to read a `*.CSV` file of the data from where it is published on the web.
-
+#orange box comes from this callout, starts and ends with three colons
 ::: {.callout-caution icon="false" title="R Code"}
 ```{r}
 url <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8qHdvTPaRc62hU94ShBcSh04HP3c11b6XZIPMiUDGuwPtifpP7QhHdSHS2YgTRMRTgfUmBYq-L3ZT/pub?gid=1217616678&single=true&output=csv"
@@ -75,6 +75,7 @@ Observe that all percentages are expressed as values between 0 and 100, and not 
 We will start by investigating the relationship between white poverty levels and support for Trump.
 
 We'll do this by creating a scatterplot with `trump_support` as the outcome variable on the y-axis and `poverty` as the explanatory variable on the x-axis. Note the use of the `geom_smooth()` function, that tells `R` to add a regression line. While the points do scatter/vary around the blue regression line, of all possible lines we can draw in this point of clouds, the blue line is the "best-fitting" line in that in minimizes the sum of the squared residuals.
+```{
 
 ::: {.callout-caution icon="false" title="R Code"}
 ```{r}
